@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ActionFilledButton" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">16sp</item>
+        <!--<item name="android:height">64pt</item>
+        <item name="android:width">315pt</item>-->
+    </style>
+
+</resources>
