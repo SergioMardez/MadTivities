@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sergiom.madtivities.R
 import com.sergiom.madtivities.utils.Resource
@@ -27,7 +26,7 @@ class EventsViewFragment : Fragment(), EventsAdapter.EventItemListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentEventsViewBinding.inflate(inflater, container, false)
         return binding.root
@@ -46,7 +45,7 @@ class EventsViewFragment : Fragment(), EventsAdapter.EventItemListener {
     }
 
     private fun setupObservers() {
-        viewModel.events.observe(viewLifecycleOwner, Observer {
+        viewModel.events.observe(viewLifecycleOwner, {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
@@ -66,7 +65,7 @@ class EventsViewFragment : Fragment(), EventsAdapter.EventItemListener {
     }
 
     override fun onClickedEvent(eventUid: String) {
-        val fragment = EventDetailFragment()
+        val fragment = EventDetailFragment.newInstance()
         fragment.arguments = bundleOf("uid" to eventUid)
         val transaction = parentFragmentManager.beginTransaction()
         transaction.addToBackStack("eventDetail")

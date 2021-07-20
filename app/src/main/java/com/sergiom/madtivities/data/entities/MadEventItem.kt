@@ -31,8 +31,8 @@ data class MadEventItem(
     )
 
     data class EventLocation (
-        val latitude: Float,
-        val longitude: Float
+        val latitude: Double,
+        val longitude: Double
     )
 
     data class EventOrganization(

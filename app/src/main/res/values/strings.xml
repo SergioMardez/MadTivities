@@ -4,8 +4,10 @@
     <string name="welcome_button_text">Empezar</string>
     <string name="detail_web_button_text">Ver en la web</string>
     <string name="date_text">Fecha: %1$s</string>
-    <string name="date_time_text">Fecha y hora: %1$s</string>
+    <string name="date_time_text">Fecha: %1$s  -  Hora: %2$s</string>
     <string name="place_text">Lugar: %1$s</string>
     <string name="price_text">Precio: %1$s</string>
-    <string name="description_text">"Descripción: \n %1$s"</string>
+    <string name="description_text">"Descripción: \n\n %1$s"</string>
+    <string name="free_text">"Gratuito"</string>
+    <string name="no_price_text">"Precio: No disponible"</string>
 </resources>

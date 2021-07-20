@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import com.sergiom.madtivities.R
 import com.sergiom.madtivities.databinding.WelcomeFragmentBinding
 import com.sergiom.madtivities.ui.eventslist.EventsViewFragment
@@ -30,7 +29,7 @@ class WelcomeFragment : Fragment() {
 
         binding.buttonstart.setOnClickListener {
             val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.container, EventsViewFragment())
+            transaction.replace(R.id.container, EventsViewFragment.newInstance())
             transaction.commit()
         }
     }

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sergiom.madtivities.R
 import com.sergiom.madtivities.data.entities.MadEventItemDataBase
 import com.sergiom.madtivities.databinding.EventItemBinding
+import com.sergiom.madtivities.utils.Utils
 
 class EventsAdapter(private val listener: EventItemListener) : RecyclerView.Adapter<EventsAdapter.EventViewHolder>() {
 
@@ -45,7 +46,7 @@ class EventsAdapter(private val listener: EventItemListener) : RecyclerView.Adap
         fun bind(item: MadEventItemDataBase) {
             this.event = item
             itemBinding.eventTitle.text = item.title
-            val dateString = item.dtstart.split(" ")
+            val dateString = Utils().parseDate(event.dtstart)
             itemBinding.eventDate.text = itemBinding.root.context.getString(R.string.date_text, dateString[0])
 
             if(item.free == 1) {

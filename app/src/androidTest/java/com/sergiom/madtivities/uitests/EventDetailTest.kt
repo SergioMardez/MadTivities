@@ -20,6 +20,7 @@ import com.sergiom.madtivities.R
 import com.sergiom.madtivities.ui.MainActivity
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
+import org.hamcrest.Matchers.not
 import org.junit.After
 import org.junit.Rule
 import org.junit.Test
@@ -48,7 +49,7 @@ class EventDetailTest {
         onView(withId(R.id.backButton)).check(
             ViewAssertions.matches(ViewMatchers.isDisplayed())
         )
-        onView(withId(R.id.descriptionDetail)).check(
+        onView(withId(R.id.map)).check(
             ViewAssertions.matches(ViewMatchers.isDisplayed())
         )
     }
@@ -67,7 +68,7 @@ class EventDetailTest {
     }
 
     @Test
-    fun swipeOnBottomSheetShowsIt() {
+    fun swipeUpOnBottomSheetShowsIt() {
         scenario = rule.scenario
 
         goToEventDetail()
@@ -77,6 +78,24 @@ class EventDetailTest {
         )
         onView(withId(R.id.buttonSeeOnInternet)).check(
             ViewAssertions.matches(ViewMatchers.isDisplayed())
+        )
+    }
+
+    @Test
+    fun swipeDownOnBottomSheetCloseIt() {
+        scenario = rule.scenario
+
+        goToEventDetail()
+        Thread.sleep(1000)
+        onView(withId(R.id.coordinator)).perform(
+            DragAction(GeneralLocation.BOTTOM_CENTER, GeneralLocation.TOP_CENTER, Press.FINGER)
+        )
+        Thread.sleep(1000)
+        onView(withId(R.id.coordinator)).perform(
+            DragAction(GeneralLocation.CENTER, GeneralLocation.BOTTOM_CENTER, Press.FINGER)
+        )
+        onView(withId(R.id.buttonSeeOnInternet)).check(
+            ViewAssertions.matches(not(ViewMatchers.isDisplayed()))
         )
     }
 
