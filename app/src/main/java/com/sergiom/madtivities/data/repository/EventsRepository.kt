@@ -51,4 +51,10 @@ class EventsRepository @Inject constructor(
     }
 
     fun getEvent(uid: String) = performGetItem( databaseQuery = { localDataSource.getEvent(uid) })
+
+    suspend fun saveEvent(madEventItemDataBase: MadEventItemDataBase) {
+        localDataSource.updateItem(madEventItemDataBase)
+    }
+
+    fun getFavouriteEvents() = performGetItem( databaseQuery = { localDataSource.getAllFavouriteEvents() })
 }

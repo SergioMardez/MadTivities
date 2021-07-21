@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.sergiom.madtivities.R
 import com.sergiom.madtivities.data.entities.MadEventItemDataBase
@@ -14,6 +15,7 @@ class EventsAdapter(private val listener: EventItemListener) : RecyclerView.Adap
 
     interface EventItemListener {
         fun onClickedEvent(eventUid: String)
+        fun onFavouriteClick(event: MadEventItemDataBase)
     }
 
     private val items = ArrayList<MadEventItemDataBase>()
@@ -51,6 +53,16 @@ class EventsAdapter(private val listener: EventItemListener) : RecyclerView.Adap
 
             if(item.free == 1) {
                 itemBinding.free.visibility = View.VISIBLE
+            }
+
+            if (item.favourite == 1) {
+                itemBinding.imageButton.background = ContextCompat.getDrawable(itemBinding.root.context, R.drawable.favorite_red_shape)
+            } else {
+                itemBinding.imageButton.background = ContextCompat.getDrawable(itemBinding.root.context, R.drawable.favorite_white_shape)
+            }
+
+            itemBinding.imageButton.setOnClickListener {
+                listener.onFavouriteClick(item)
             }
         }
 

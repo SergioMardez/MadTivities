@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -107,6 +108,16 @@ class EventDetailFragment : Fragment(), OnMapReadyCallback {
             } else {
                 Toast.makeText(context, "No hay link disponible", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        if (event.favourite == 1) {
+            binding.favButtonDetail.background = ContextCompat.getDrawable(requireContext(), R.drawable.favorite_red_shape)
+        } else {
+            binding.favButtonDetail.background = ContextCompat.getDrawable(requireContext(), R.drawable.favorite_white_shape)
+        }
+
+        binding.favButtonDetail.setOnClickListener {
+            viewModel.saveFavourite(event)
         }
 
         try {
