@@ -6,7 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/card_view"
-    android:layout_margin="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
     card_view:cardBackgroundColor="#614CD4"
     card_view:cardCornerRadius="12dp"
     card_view:cardElevation="3dp"
@@ -23,9 +26,8 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
-            android:text="lflflf"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
@@ -38,7 +40,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
-            android:text="lflflf"
             android:textColor="@color/white"
             android:textSize="16sp"
             card_view:layout_constraintEnd_toEndOf="parent"
@@ -61,12 +62,11 @@
                 android:id="@+id/free"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#EC5555"
+                android:text="@string/list_free_text"
+                android:textColor="@color/red_app"
                 android:textSize="17sp"
                 android:textStyle="bold"
-                android:text="GRATUITO"
-                android:visibility="gone"
-                />
+                android:visibility="gone" />
 
         </LinearLayout>
 

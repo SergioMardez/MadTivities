@@ -23,9 +23,6 @@ import com.sergiom.madtivities.utils.Resource
 import com.sergiom.madtivities.utils.Utils
 import com.sergiom.madtivities.utils.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.*
 
 @AndroidEntryPoint
 class EventDetailFragment : Fragment(), OnMapReadyCallback {
@@ -34,8 +31,8 @@ class EventDetailFragment : Fragment(), OnMapReadyCallback {
     private val viewModel: EventDetailViewModel by viewModels()
     private lateinit var mMap: GoogleMap
     private lateinit var mapView: MapView
-    private var latitude = 40.4378698
-    private var longitude = -3.8196216
+    private var latitude = 40.4169019
+    private var longitude = -3.7055647
     private var title = ""
 
     override fun onCreateView(
@@ -75,7 +72,12 @@ class EventDetailFragment : Fragment(), OnMapReadyCallback {
         binding.titleDetail.text = event.title
         val date = Utils().parseDate(event.dtstart)
         binding.dateDetail.text = context?.getString(R.string.date_time_text, date[0], date[1])
-        binding.placeDetail.text = context?.getString(R.string.place_text, event.eventLocation)
+
+        if (event.eventLocation.isEmpty()) {
+            binding.placeDetail.text = context?.getString(R.string.no_place_text)
+        } else {
+            binding.placeDetail.text = context?.getString(R.string.place_text, event.eventLocation)
+        }
 
         if (event.price.isEmpty() && event.free == 0) {
             binding.priceDetail.text = context?.getString(R.string.no_price_text)
@@ -129,7 +131,8 @@ class EventDetailFragment : Fragment(), OnMapReadyCallback {
         mMap.addMarker(
             MarkerOptions()
                 .position(marker)
-                .title(title))
+                .title(title)
+        )?.showInfoWindow()
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 15f))
         mMap.animateCamera(CameraUpdateFactory.zoomIn())
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15f), 2000, null)
